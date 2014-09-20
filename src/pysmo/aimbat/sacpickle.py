@@ -86,9 +86,6 @@ try:
 except:
 	import pickle
 
-from obspy import read
-from obspy import Trace
-from obspy import Stream
 
 # ############################################################################### #
 #                                                                                 #
@@ -325,50 +322,6 @@ class SacGroup:
 
 
 
-
-
-
-
-
-# ############################################################################### #
-#                                                                                 #
-#                                WRITE TO SAC FILE                                #
-#                                                                                 #
-# ############################################################################### #
-
-def transformToSac(gsac):
-	evdp = gsac.event[8]
-	evla = gsac.event[6]
-	evlo = gsac.event[7]
-	mag = gsac.event[9]
-	for sacdh in gsac.saclist:
-		dirarr = sacdh.filename.split('.')
-		dirname = dirarr[0]+'/'+dirarr[1]
-		if not os.path.exists(dirname):
-			os.makedirs(dirname)
-
-		trace = Trace()
-
-		#data
-		trace.data = sacdh.data
-
-		#states
-		trace.stats._format = 'SAC'
-		trace.stats.network = sacdh.netsta.split('.')[0]
-		trace.stats.station = sacdh.netsta.split('.')[1]
-		trace.stats.delta = sacdh.delta
-		trace.stats.npts = sacdh.npts
-
-		trace.stats.sac = {'dist':sacdh.dist, 'kevnm':gsac.kevnm, 'az':sacdh.az, 'b':sacdh.b, 'baz':sacdh.baz, 'gcarc':sacdh.gcarc, 'stla':sacdh.stla, 'stlo':sacdh.stlo, 'evdp':evdp, 'evla':evla, 'evlo':evlo, 'mag':mag}
-
-		trace.write(sacdh.filename, format='SAC')
-
-
-# ############################################################################### #
-#                                                                                 #
-#                                WRITE TO SAC FILE                                #
-#                                                                                 #
-# ############################################################################### #
 
 
 
