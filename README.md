@@ -27,8 +27,7 @@ Dependencies
 * [Matplotlib](http://matplotlib.org/)
 * [pysmo.sac](https://github.com/pysmo/sac)
 * [Tkinter](https://wiki.python.org/moin/TkInter)
-* [Basemap](http://matplotlib.org/basemap/index.html)
-* [Obspy](https://github.com/obspy/obspy/wiki)
+* NO basemap or obspy, which can be troublesome during installation. Not all users will need the features dependent on these two libraries. 
 
 Filtering Data
 --------------
